@@ -1,0 +1,66 @@
+REACT
+    react 特点：
+      1.声明式设计 −React采用声明范式，可以轻松描述应用。
+      2.高效 −React通过对DOM的模拟，最大限度地减少与DOM的交互。
+      3.灵活 −React可以与已知的库或框架很好地配合。
+      4.JSX − JSX 是 JavaScript 语法的扩展。React 开发不一定使用 JSX ，但建议使用它。
+      5.组件 − 通过 React 构建组件，使得代码更加容易得到复用，能够很好的应用在大项目的开发中。
+      6.单向响应的数据流 − React 实现了单向响应的数据流，从而减少了重复代码，这也是它为什么比传统数据绑定更简单。
+    
+    
+    使用前需要先加载三个库：
+      react.js   react核心库
+      react-dom.js   提供与DOM相关的
+      Browser.js   将JSX语法转换为JavaScript语法
+      
+    使用JSX语法的地方：
+      <script type="text/babel">
+    
+    JSX语法是什么：
+      HTML 语言直接写在 JavaScript 语言之中，不加任何引号，这就是 JSX 的语法，它允许 HTML 与 JavaScript 的混写
+      1.要创建一个HTML标准中存在的元素，直接像写HTML代码一样即可：
+        例：var myDivElement = <div className="foo" />;
+            React.render(myDivElement, document.body);
+            需要注意的是class和for这两个属性，JSX语法最终是要被转换为纯Javascript的，所以要和在Javascript DOM中一样，用className和htmlFor。
+      2.在创建HTML标准内的元素时，JSX转化器会丢弃那些非标准的属性，如果一定要添加自定义属性，那么需要在这些自定义属性之前添加data-前缀
+        例：<div data-custom-attribute="foo" />
+      3.在JSX语法中写Javascript表达式只需要用{}即可
+      
+      总结JSX语法规则：遇到 HTML 标签（以 < 开头），就用 HTML 规则解析；遇到代码块（以 { 开头），就用 JavaScript 规则解析
+      
+      4.React 的 JSX 使用大、小写的约定来区分本地组件的类和 HTML 标签。
+        例：var MyComponent = React.createClass({/*...*/});
+            var myElement = <MyComponent someProperty={true} />;
+            ReactDOM.render(myElement, document.getElementById('example'));
+            
+  
+    ReactDOM.render()：
+      用于将模板转为 HTML 语言，并插入指定的 DOM 节点
+
+      
+ 
+ 
+ok，我们先来一个Hello world！
+    
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <script src="../react/react.js"></script>
+    <script src="../react/react-dom.js"></script>
+    <script src="../react/browser.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      ReactDOM.render(
+        <h1>Hello, world!</h1>,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>
+
+      
+      
