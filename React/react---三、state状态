@@ -1,0 +1,30 @@
+React 把组件看成是一个状态机（State Machines）。通过与用户的交互，实现不同状态，然后渲染 UI，让用户界面和数据保持一致。
+
+与往常一样，我们先上一个例子：
+
+var LikeButton = React.createClass({
+  getInitialState: function() {
+    return {liked: false};
+  },
+  handleClick: function(event) {
+    this.setState({liked: !this.state.liked});
+  },
+  render: function() {
+    var text = this.state.liked ? 'like' : 'haven\'t liked';
+    return (
+      <p onClick={this.handleClick}>
+        You {text} this. Click to toggle.
+      </p>
+    );
+  }
+});
+
+ReactDOM.render(
+  <LikeButton />,
+  document.getElementById('example')
+);
+
+上面代码：
+getInitialState 方法用于定义初始状态，也就是一个对象，这个对象可以通过 this.state 属性读取
+this.setState 方法就修改状态值，每次修改以后，自动调用 this.render 方法，再次渲染组件
+
