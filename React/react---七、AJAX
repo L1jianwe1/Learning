@@ -1,0 +1,42 @@
+React 组件的数据可以通过 componentDidMount方法中的 Ajax 来获取，当从服务端获取数据库可以将数据存储在 state 中，再用 this.setState 方法重新渲染 UI。
+当使用异步加载数据时，在组件卸载前使用 componentWillUnmount 来取消未完成的请求。
+
+
+例子，例子！！！！
+var UserGist = React.createClass({
+  getInitialState: function() {
+    return {
+      username: '',
+      lastGistUrl: ''
+    };
+  },
+
+  componentDidMount: function() {
+    $.get(this.props.source, function(result) {
+      var lastGist = result[0];
+      if (this.isMounted()) {
+        this.setState({
+          username: lastGist.owner.login,
+          lastGistUrl: lastGist.html_url
+        });
+      }
+    }.bind(this));
+  },
+
+  render: function() {
+    return (
+      <div>
+        {this.state.username}'s last gist is
+        <a href={this.state.lastGistUrl}>here</a>.
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(
+  <UserGist source="https://api.github.com/users/octocat/gists" />,
+  document.body
+);
+上面代码使用 jQuery 完成 Ajax 请求，这是为了便于说明。React 本身没有任何依赖，完全可以不用jQuery，而使用其他库。
+
+
